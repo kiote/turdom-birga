@@ -1,0 +1,10 @@
+{
+  "name"         : "turdom-birga",
+  "version"      : "0.0.1",
+  "description"  : "turdom-birga scraper",
+  "main"         : "server.js",
+  "author"       : "kiote",
+  "dependencies" : {
+    "express"    : "latest"
+  }
+}
