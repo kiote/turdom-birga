@@ -1,10 +1,11 @@
-var express = require('express');
-var app     = express();
+var express = require('express')
+var app = express()
 
-app.get('/', function(req, res){
+app.get('/', function (req, res) {
+  res.send('Hello there!')
+})
 
+const port = 8080
+app.listen(port, function () {
+  console.log('Example app listening on port' + port +'!')
 });
-
-var port = 8088;
-app.listen(port);
-console.log('Magic happens on port ' + port);
