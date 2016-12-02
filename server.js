@@ -6,7 +6,7 @@ var Tour = require('./models/tour');
 app.get('/', function (req, res) {
   Tour.find({}, function(err, tours){
     if(err) return res.send(500);
-    res.setHeader('Content-Type', 'application/json');
+    res.set('Content-Type', 'application/json');
     res.json(tours.map(function(a){
       return {
         id: a._id,
