@@ -1,5 +1,7 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/myproject');
+// mongodb://localhost:27017/myproject
+var mongoUri = process.env.MONGODB_URI
+mongoose.connect(mongoUri);
 
 var tourSchema = mongoose.Schema({
   detail: String,
