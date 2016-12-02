@@ -1,8 +1,14 @@
 var parser = require('./lib/parser/parse');
-var mongo = require('./lib/mongo/insert');
+var Tour = require('./models/tour');
 
-mongo.clearCollection();
+var opts = {
+  server: {
+    socketOptions: { keepAlive: 1 }
+  }
+};
+
 parser.parse(function(result){
-  mongo.insertMany([result]);
-  // console.log(result);
+  Tour.remove({});
+  new Tour(result).save();
+  console.log(result);
 });
