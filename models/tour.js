@@ -4,6 +4,7 @@ mongoose.connect('mongodb://localhost:27017/myproject');
 var tourSchema = mongoose.Schema({
   detail: String,
   price: String,
+  currency: String,
   from: String,
   depart: String,
   arrive: String,

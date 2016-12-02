@@ -7,8 +7,10 @@ var opts = {
   }
 };
 
+Tour.remove({}, function(err, removed){
+  console.log(removed);
+});
 parser.parse(function(result){
-  Tour.remove({});
   new Tour(result).save();
   console.log(result);
 });

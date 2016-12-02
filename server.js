@@ -12,6 +12,7 @@ app.get('/', function (req, res) {
         id: a._id,
         detail: a.detail,
         price: a.price,
+        currency: a.currency,
         from: a.from,
         depart: a.depart,
         arrive: a.arrive,
