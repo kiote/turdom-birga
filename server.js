@@ -1,6 +1,5 @@
 var express = require('express');
 var app = express();
-var request = require('request');
 var Tour = require('./models/tour');
 
 app.get('/', function (req, res) {
