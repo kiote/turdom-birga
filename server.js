@@ -18,7 +18,8 @@ app.get('/', function (req, res) {
         days: a.days,
         operator: a.operator,
         phones: a.phones,
-        email: a.email
+        email: a.email,
+        type: a.type
       }
     });
     res.json({'tours': tours})

@@ -7,9 +7,12 @@ var opts = {
   }
 };
 
+// clear previously scrapped tours
 Tour.remove({}, function(err, removed){
   console.log(removed);
 });
+
+// parse
 parser.parse(function(result){
   new Tour(result).save();
   console.log(result);

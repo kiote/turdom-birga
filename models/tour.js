@@ -12,7 +12,8 @@ var tourSchema = mongoose.Schema({
   days: String,
   operator: String,
   phones: String,
-  email: String
+  email: String,
+  type: String
 });
 
 var Tour = mongoose.model('Tour', tourSchema);
