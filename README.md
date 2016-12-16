@@ -17,5 +17,5 @@ This project follows Microservices principe and consists of:
 
 ## Project progress
 
-See [Projects page](https://github.com/kiote/turdom-birga/projects) to track progress.
+See [Projects page](https://github.com/kiote/turdom-birga/projects/1) to track progress.
 
