@@ -6,9 +6,10 @@
   "author": "kiote",
   "dependencies": {
     "express": "latest",
-    "jsonfile": "^2.4.0",
     "mongodb": "^2.2.11",
     "mongoose": "^4.7.0",
-    "osmosis": "^1.1.2"
+    "osmosis": "^1.1.2",
+    "request": "^2.79.0",
+    "mongoose-double": "0.0.1"
   }
 }
