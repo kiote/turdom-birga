@@ -21,18 +21,18 @@ Rate.remove({}, function(err, removed){
 rateGetter.parse(function(result) {
   new Rate(result).save();
   console.log('rates saved');
-});
 
-// parse
-parser.parse(function(result){
+  // parse
+  parser.parse(function(result){
 
-  var tour = new Tour(result);
-  tour.calcPriceInRub(result['price'],
-                      result['currency']);
-  tour.save();
-  // calcPriceInUsd(result['price'],
-  //                result['currency']);
-  // calcPriceInEur(result['price'],
-  //                result['currency']);
-  console.log(tour);
+    var tour = new Tour(result);
+    tour.convertPrice(result['price'],
+                      result['currency'], function(rates) {
+      tour.priceRub = rates.priceRub;
+      tour.priceUsd = rates.priceUsd;
+      tour.priceEur = rates.priceEur;
+      tour.save();
+      // console.log(tour);
+    });
+  });
 });

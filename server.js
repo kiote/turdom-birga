@@ -12,6 +12,8 @@ app.get('/', function (req, res) {
         detail: a.detail,
         price: a.price,
         priceRub: a.priceRub,
+        priceEur: a.priceEur,
+        priceUsd: a.priceUsd,
         currency: a.currency,
         from: a.from,
         depart: a.depart,

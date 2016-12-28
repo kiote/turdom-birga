@@ -1,14 +1,21 @@
 # turdom-birga
 
-Парсим http://www.tourdom.ru/birga/go3/ и переводим в JSON.
+## Project goals
 
---
+- Parse results from tourdom.ru and saves them to MongoBD.
+- NodeJS practice
+- Microservices concept practice
+- React practice
 
-Parse results from tourdom.ru and saves them to Mongo.
+## Project parts
 
-See [Projects page](https://github.com/kiote/turdom-birga/projects) to track progress.
-
-This project follows Microservices principe and consists of two services:
+This project follows Microservices principe and consists of:
 
 - API (this repo);
-- html representation (see [here](https://github.com/kiote/tourdom-html))
+- simple html representation (see [here](https://github.com/kiote/tourdom-html));
+- currency rate service (see [here](https://github.com/kiote/tourdom-currency))
+
+## Project progress
+
+See [Projects page](https://github.com/kiote/turdom-birga/projects/1) to track progress.
+
