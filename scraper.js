@@ -14,6 +14,7 @@ Tour.remove({}, function(err, removed){
   console.log('all old tours removed');
 });
 
+// clear rates
 Rate.remove({}, function(err, removed){
   console.log('all old rates removed');
 });
@@ -24,7 +25,6 @@ rateGetter.parse(function(result) {
 
   // parse
   parser.parse(function(result){
-
     var tour = new Tour(result);
     tour.convertPrice(result['price'],
                       result['currency'], function(rates) {
@@ -32,7 +32,6 @@ rateGetter.parse(function(result) {
       tour.priceUsd = rates.priceUsd;
       tour.priceEur = rates.priceEur;
       tour.save();
-      // console.log(tour);
     });
   });
 });

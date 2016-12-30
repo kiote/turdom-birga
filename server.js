@@ -1,9 +1,26 @@
 var express = require('express');
 var app = express();
+
+var Type = require('./models/type');
 var Tour = require('./models/tour');
 
+app.get('/types', function(req, res) {
+  Type.find({})
+      .exec(function(err, types){
+        if(err) return res.send(500);
+        res.set('Content-Type', 'application/json');
+        var types = types.map(function(a){
+          return {
+            name: a.name
+          }
+        });
+        res.json({'types': types});
+      });
+});
+
 app.get('/', function (req, res) {
-  Tour.find({}, function(err, tours){
+  Tour.find({})
+    .exec(function(err, tours){
     if(err) return res.send(500);
     res.set('Content-Type', 'application/json');
     var tours = tours.map(function(a){
