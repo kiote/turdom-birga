@@ -19,7 +19,12 @@ app.get('/types', function(req, res) {
 });
 
 app.get('/', function (req, res) {
-  Tour.find({})
+  if (req.query['type'] !== undefined) {
+    finder = {type: req.query['type']};
+  } else {
+    finder = {}
+  }
+  Tour.find(finder)
     .exec(function(err, tours){
     if(err) return res.send(500);
     res.set('Content-Type', 'application/json');

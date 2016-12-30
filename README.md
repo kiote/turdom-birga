@@ -19,3 +19,16 @@ This project follows Microservices principe and consists of:
 
 See [Projects page](https://github.com/kiote/turdom-birga/projects/1) to track progress.
 
+## Endpoints
+
+### /
+
+list of all tours
+
+### /?type=<type from the types list>
+
+list of tours filtered by types
+
+### /types
+
+list of available types
