@@ -5,7 +5,7 @@ var Type = require('./models/type');
 var Tour = require('./models/tour');
 
 app.get('/types', function(req, res) {
-  Type.find({})
+  Type.find({'priceUsd.value': {$gt: 1000}})
       .exec(function(err, types){
         if(err) return res.send(500);
         res.set('Content-Type', 'application/json');
@@ -24,7 +24,7 @@ app.get('/', function (req, res) {
   } else {
     finder = {}
   }
-  Tour.find(finder)
+  Tour.find({})
     .exec(function(err, tours){
     if(err) return res.send(500);
     res.set('Content-Type', 'application/json');
