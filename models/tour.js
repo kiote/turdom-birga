@@ -1,6 +1,4 @@
 var mongoose = require('mongoose');
-require('mongoose-double')(mongoose);
-var SchemaTypes = mongoose.Schema.Types;
 var Rate = require('./rate');
 
 var mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/myproject'
@@ -18,15 +16,9 @@ var tourSchema = mongoose.Schema({
   phones: String,
   email: String,
   type: String,
-  priceRub: {
-    type: SchemaTypes.Double
-  },
-  priceUsd: {
-    type: SchemaTypes.Double
-  },
-  priceEur: {
-    type: SchemaTypes.Double
-  }
+  priceRub: Number,
+  priceUsd: Number,
+  priceEur: Number
 });
 
 var getCurrency = function(currency) {
@@ -46,17 +38,17 @@ tourSchema.methods.convertPrice = function (price, currency, callback) {
   Rate.find({}, function(err, rates){
     rates = rates[0];
     if (currency == 'rub') {
-      rates.priceRub = parseFloat(price).toFixed(2);
-      rates.priceUsd = (parseFloat(rates.rub.usd.value) * parseFloat(price)).toFixed(2);
-      rates.priceEur = (parseFloat(rates.rub.eur.value) * parseFloat(price)).toFixed(2);
+      rates.priceRub = Number(parseFloat(price).toFixed(2));
+      rates.priceUsd = Number((parseFloat(rates.rub.usd.value) * parseFloat(price)).toFixed(2));
+      rates.priceEur = Number((parseFloat(rates.rub.eur.value) * parseFloat(price)).toFixed(2));
     } else if (currency == 'usd') {
-      rates.priceUsd = parseFloat(price).toFixed(2);
-      rates.priceEur = (parseFloat(rates.usd.eur.value) * parseFloat(price)).toFixed(2);
-      rates.priceRub = (parseFloat(rates.usd.rub.value) * parseFloat(price)).toFixed(2);
+      rates.priceUsd = Number(parseFloat(price).toFixed(2));
+      rates.priceEur = Number((parseFloat(rates.usd.eur.value) * parseFloat(price)).toFixed(2));
+      rates.priceRub = Number((parseFloat(rates.usd.rub.value) * parseFloat(price)).toFixed(2));
     } else {
-      rates.priceEur = parseFloat(price).toFixed(2);
-      rates.priceRub = (parseFloat(rates.eur.rub.value) * parseFloat(price)).toFixed(2);
-      rates.priceUsd = (parseFloat(rates.eur.usd.value) * parseFloat(price)).toFixed(2);
+      rates.priceEur = Number(parseFloat(price).toFixed(2));
+      rates.priceRub = Number((parseFloat(rates.eur.rub.value) * parseFloat(price)).toFixed(2));
+      rates.priceUsd = Number((parseFloat(rates.eur.usd.value) * parseFloat(price)).toFixed(2));
     }
     callback(rates);
   });
