@@ -31,7 +31,18 @@ rateGetter.parse(function(result) {
       tour.priceRub = rates.priceRub;
       tour.priceUsd = rates.priceUsd;
       tour.priceEur = rates.priceEur;
-      tour.save();
+      var dateArray = tour.depart.split('.');
+      var needToSave = true;
+      if (dateArray.length > 2) {
+        date = new Date(dateArray[2]+'/'+dateArray[1]+'/'+dateArray[0]);
+        today = new Date();
+        if (date < today) {
+          needToSave = false;
+        }
+      }
+      if (needToSave) {
+        tour.save();
+      }
     });
   });
 });
