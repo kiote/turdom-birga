@@ -2,6 +2,7 @@ var parser = require('./lib/parser/parse');
 var rateGetter = require('./lib/rate_getter');
 var Tour = require('./models/tour');
 var Rate = require('./models/rate');
+var request = require('request');
 
 var opts = {
   server: {
@@ -9,9 +10,15 @@ var opts = {
   }
 };
 
-// clear previously scrapped tours
-Tour.remove({}, function(err, removed){
-  console.log('all old tours removed');
+request('http://www.tourdom.ru/birga/go3/', function (error, response, body) {
+  if (!error) {
+    // clear previously scrapped tours
+    Tour.remove({}, function(err, removed){
+      console.log('all old tours removed');
+    });
+  } else {
+    console.log(error);
+  }
 });
 
 // clear rates
@@ -24,7 +31,10 @@ rateGetter.parse(function(result) {
   console.log('rates saved');
 
   // parse
-  parser.parse(function(result){
+  parser.parse(function(result, error){
+    if (error) {
+      console.log(error);
+    }
     var tour = new Tour(result);
     tour.convertPrice(result['price'],
                       result['currency'], function(rates) {
