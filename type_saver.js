@@ -2,12 +2,12 @@ var Type = require('./models/type');
 var Tour = require('./models/tour');
 
 // clear types
-Type.remove({}, function(err, removed){
+Type.remove({}, (err, removed) => {
   console.log('all old types removed');
 });
 
-Tour.find({}).distinct('type', function(err, types){
-  types.forEach(function(type){
+Tour.find({}).distinct('type', (err, types) => {
+  types.forEach((type) => {
     new Type({name: type}).save();
   });
 });

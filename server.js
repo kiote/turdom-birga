@@ -1,24 +1,24 @@
-var express = require('express');
-var app = express();
+const express = require('express');
+const app = express();
 
-var Type = require('./models/type');
-var Tour = require('./models/tour');
+const Type = require('./models/type');
+const Tour = require('./models/tour');
 
-app.get('/types', function(req, res) {
+app.get('/types', (req, res) => {
   Type.find()
-      .exec(function(err, types){
+      .exec((err, types) => {
         if(err) return res.send(500);
         res.set('Content-Type', 'application/json');
-        var types = types.map(function(a){
+        const typeNames = types.map(function(a){
           return {
             name: a.name
           }
         });
-        res.json({'types': types});
+        res.json({'types': typeNames});
       });
 });
 
-app.get('/', function (req, res) {
+app.get('/', (req, res) => {
   finder = {}
   if (req.query['type'] !== undefined) {
     finder.type = req.query['type'];
@@ -30,10 +30,10 @@ app.get('/', function (req, res) {
     finder.priceUsd = {$lt: Number(req.query['lt'])};
   }
   Tour.find(finder)
-    .exec(function(err, tours){
+    .exec((err, tours) => {
     if(err) return res.send(500);
     res.set('Content-Type', 'application/json');
-    var tours = tours.map(function(a){
+    const toursJson = tours.map((a) => {
       return {
         id: a._id,
         detail: a.detail,
@@ -52,11 +52,11 @@ app.get('/', function (req, res) {
         type: a.type
       }
     });
-    res.json({'tours': tours})
+    res.json({'tours': toursJson})
   })
 });
 
 const port = process.env.PORT || 8081;
-app.listen(port, function () {
+app.listen(port, () => {
   console.log('App listening on port' + port +'!');
 });
