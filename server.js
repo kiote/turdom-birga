@@ -9,12 +9,7 @@ app.get('/types', (req, res) => {
       .exec((err, types) => {
         if(err) return res.send(500);
         res.set('Content-Type', 'application/json');
-        const typeNames = types.map(function(a){
-          return {
-            name: a.name
-          }
-        });
-        res.json({'types': typeNames});
+        res.json({'types': types});
       });
 });
 
@@ -33,26 +28,7 @@ app.get('/', (req, res) => {
     .exec((err, tours) => {
     if(err) return res.send(500);
     res.set('Content-Type', 'application/json');
-    const toursJson = tours.map((a) => {
-      return {
-        id: a._id,
-        detail: a.detail,
-        price: a.price,
-        priceRub: a.priceRub,
-        priceEur: a.priceEur,
-        priceUsd: a.priceUsd,
-        currency: a.currency,
-        from: a.from,
-        depart: a.depart,
-        arrive: a.arrive,
-        days: a.days,
-        operator: a.operator,
-        phones: a.phones,
-        email: a.email,
-        type: a.type
-      }
-    });
-    res.json({'tours': toursJson})
+    res.json({'tours': tours})
   })
 });
 
